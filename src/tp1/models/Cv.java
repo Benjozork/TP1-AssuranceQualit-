@@ -7,11 +7,20 @@ package tp1.models;
  **/
 public class Cv {
 
-    public String nom;
-    public String prneom;
-    public String formation;
-    public int experience;
-    public String[] competences;
-    public String attentes;
+    public final String nom;
+    public final String prenom;
+    public final String formation;
+    public final int experience;
+    public final String[] competences;
+    public final String attentes;
+
+    public Cv() {
+        this.nom = "Benjamin";
+        this.prenom = "Dupont";
+        this.formation = "Rien";
+        this.experience = 69420;
+        this.competences = new String[] { "Rien" };
+        this.attentes = "Aucune";
+    }
 
 }
