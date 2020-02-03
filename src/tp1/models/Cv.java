@@ -7,9 +7,11 @@ package tp1.models;
  **/
 public class Cv {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
+    public String nom;
+    public String prneom;
+    public String formation;
+    public int experience;
+    public String[] competences;
+    public String attentes;
 
 }
