@@ -3,7 +3,7 @@ package tp1;
 /**
  * TP1 Assurance Qualité
  *
- * @author Benjamin Dupont, Eric Pintea, Jérémie Bergeron
+ * @author Benjamin Dupont, Eric Pintea
  **/
 public class Principal {
 
