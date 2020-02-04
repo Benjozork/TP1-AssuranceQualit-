@@ -12,9 +12,9 @@ public class Principal {
 	public static void main(String[] args) {
             System.out.println("Hello, World !");
 	
-            Cv cv = new Cv();
+            //Cv cv = new Cv();
 
-            System.out.println(cv);
+           // System.out.println(cv);
         }
 
 }
