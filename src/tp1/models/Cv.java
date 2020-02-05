@@ -49,9 +49,9 @@ public class Cv {
 			} else {
 				System.out.print(cv.competences[i] + ", ");
 			}
-	        }
+		}
 
 		System.out.print("Attentes Membre:\t" + cv.attentes);
-S		System.out.print("\n");
+		System.out.print("\n");
 	}
 }
