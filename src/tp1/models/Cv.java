@@ -52,6 +52,6 @@ public class Cv {
 	        }
 
 		System.out.print("Attentes Membre:\t" + cv.attentes);
-                System.out.print("\n");
+S		System.out.print("\n");
 	}
 }
