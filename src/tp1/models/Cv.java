@@ -14,18 +14,18 @@ public class Cv {
 	public final String[] competences;
 	public final String attentes;
 
-	public void main(String[] args) {
+	public static void main(String[] args) {
 
 		String[] competencesBen = new String[] { "rien" };
 		String[] competencesEric = new String[] {
 				"Can do something seemingly brain dead without forgetting how to breathe." };
 
-		Cv Benjamin = new Cv("Benjamin", "Dupont", "Rien", 69420, competencesBen, "Aucune");
-		Cv Eric = new Cv("Pintea", "Eric", "nope", -3, competencesEric, "I want to learn how to moonwalk.");
+		Cv benjamin = new Cv("Benjamin", "Dupont", "Rien", 69420, competencesBen, "Aucune");
+		Cv eric = new Cv("Pintea", "Eric", "nope", -3, competencesEric, "I want to learn how to moonwalk.");
 
 		System.out.println("\nBienvenue chez Barette!");
-		afficher(Benjamin);
-		afficher(Eric);
+		afficher(benjamin);
+		afficher(eric);
 
 	}
 
@@ -39,17 +39,19 @@ public class Cv {
 		this.attentes = attentesMembre;
 	}
 
-	public void afficher(Cv membreAffiche) {
-		System.out.print("\nNom Membre:\t" + membreAffiche.nom + "\nPrenom Membre:\t" + membreAffiche.prenom
-				+ "\nFormation Membre:\t" + membreAffiche.formation + "\nExperience Membre:\t"
-				+ membreAffiche.experience + "\nCompetences Membre:\t");
-		for (int i = 0; i < competences.length; i++) {
-			if (i == competences.length - 1) {
-				System.out.println(competences[i]);
+	public static void afficher(Cv cv) {
+		System.out.print("\nNom Membre:\t\t" + cv.nom + "\nPrenom Membre:\t\t" + cv.prenom
+				+ "\nFormation Membre:\t" + cv.formation + "\nExperience Membre:\t"
+				+ cv.experience + "\nCompetences Membre:\t");
+		for (int i = 0; i < cv.competences.length; i++) {
+			if (i == cv.competences.length - 1) {
+				System.out.println(cv.competences[i]);
 			} else {
-				System.out.print(competences[i] + ", ");
+				System.out.print(cv.competences[i] + ", ");
 			}
-		}
-		System.out.print("Attentes Membre:\t" + membreAffiche.attentes);
+	        }
+
+		System.out.print("Attentes Membre:\t" + cv.attentes);
+                System.out.print("\n");
 	}
 }
