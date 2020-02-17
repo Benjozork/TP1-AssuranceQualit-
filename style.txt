@@ -1,0 +1,6 @@
+Benjamin Dupont
+
+ - Accolades sur la même ligne
+ - 4 espaces d'indentation
+ - Utiliser des streams au lieu des boucles for lorsque possible
+ - Mettre les modèles de données dans un package "models"
