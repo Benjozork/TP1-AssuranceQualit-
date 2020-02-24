@@ -1,0 +1,21 @@
+apply plugin: 'idea'
+apply plugin: 'java'
+
+sourceSets {
+    tp1 {
+        java { srcDir 'src/tp1' }
+    }
+    tp1_facture {
+        java { srcDir 'src/tp1_facture' }
+    }
+}
+
+task(startPart1, dependsOn: 'classes', type: JavaExec) {
+    main = 'tp1.Principal'
+    classpath = sourceSets.tp1.runtimeClasspath
+}
+
+task(startPart2, dependsOn: 'classes', type: JavaExec) {
+    main = 'tp1_facture.Principal'
+    classpath = sourceSets.tp1_facture.runtimeClasspath
+}
