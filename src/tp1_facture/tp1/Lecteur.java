@@ -1,7 +1,7 @@
-package tp1_facture;
+package tp1;
 
-import tp1_facture.models.Commande;
-import tp1_facture.models.Commande.LigneCommande;
+import tp1.models.Commande;
+import tp1.models.Commande.LigneCommande;
 
 import java.io.*;
 import java.util.Arrays;
@@ -34,20 +34,21 @@ public class Lecteur {
 
         String[] lignesFichier = sbFichier.toString().split("\n");
 
-        String ligneEnteteClients;
-        String[] lignesClients = new String[0];
-        String ligneEntetePlats;
-        String[] lignesPlats = new String[0];
-        String ligneEnteteCommandes;
+        String   ligneEnteteClients;
+        String[] lignesClients   = new String[0];
+        String   ligneEntetePlats;
+        String[] lignesPlats     = new String[0];
+        String   ligneEnteteCommandes;
         String[] lignesCommandes = new String[0];
-        String ligneFin;
+        String   ligneFin;
 
-        int indLignes = 0;
-        boolean fichierValide = true;
-        String raisonfichierInvalide = "<raison inconnue>";
-        String mauvaiseLigne = "<mauvaise ligne inconnue>";
+        int     indLignes             = 0;
+        boolean fichierValide         = true;
+        String  raisonfichierInvalide = "<raison inconnue>";
+        String  mauvaiseLigne         = "<mauvaise ligne inconnue>";
 
-        ligneEnteteClients = lireLigne(lignesFichier, indLignes); indLignes++;
+        ligneEnteteClients = lireLigne(lignesFichier, indLignes);
+        indLignes++;
         if (!ligneEnteteClients.equals(ENTETE_CLIENTS)) {
             fichierValide = false;
             raisonfichierInvalide = "ENTETE_CLIENTS";
@@ -57,7 +58,8 @@ public class Lecteur {
             lignesClients = lireLignesTantQue(lignesFichier, indLignes, Pattern.compile("^[^\\s]+$"));
             indLignes += Arrays.stream(lignesClients).filter(Objects::nonNull).count();
 
-            ligneEntetePlats = lireLigne(lignesFichier, indLignes); indLignes++;
+            ligneEntetePlats = lireLigne(lignesFichier, indLignes);
+            indLignes++;
 
             if (!ligneEntetePlats.equals(ENTETE_PLATS)) {
                 fichierValide = false;
@@ -68,7 +70,8 @@ public class Lecteur {
                 lignesPlats = lireLignesTantQue(lignesFichier, indLignes, Pattern.compile("^\\w+\\s\\d+\\.\\d+$"));
                 indLignes += Arrays.stream(lignesPlats).filter(Objects::nonNull).count();
 
-                ligneEnteteCommandes = lireLigne(lignesFichier, indLignes); indLignes++;
+                ligneEnteteCommandes = lireLigne(lignesFichier, indLignes);
+                indLignes++;
 
                 if (!ligneEnteteCommandes.equals(ENTETE_COMMANDES)) {
                     fichierValide = false;
@@ -97,38 +100,38 @@ public class Lecteur {
             throw new IllegalArgumentException("Le fichier ne respecte pas le format demandé ! (" + raisonfichierInvalide + ", '" + mauvaiseLigne + "')");
 
         Commande.Client[] clients;
-        Commande.Plat[] plats;
-        LigneCommande[] commandes;
+        Commande.Plat[]   plats;
+        LigneCommande[]   commandes;
 
         clients = Arrays
-                .stream(lignesClients)
-                .filter(Objects::nonNull)
-                .map(Lecteur::parserClient)
-                .distinct()
-                .toArray(Commande.Client[]::new);
+            .stream(lignesClients)
+            .filter(Objects::nonNull)
+            .map(Lecteur::parserClient)
+            .distinct()
+            .toArray(Commande.Client[]::new);
 
         plats = Arrays
-                .stream(lignesPlats)
-                .filter(Objects::nonNull)
-                .map(Lecteur::parserPlat)
-                .distinct()
-                .toArray(Commande.Plat[]::new);
+            .stream(lignesPlats)
+            .filter(Objects::nonNull)
+            .map(Lecteur::parserPlat)
+            .distinct()
+            .toArray(Commande.Plat[]::new);
 
         commandes = Arrays
-                .stream(lignesCommandes)
-                .filter(Objects::nonNull)
-                .map(ligne -> {
-                    LigneCommande lg;
-                    try {
-                        lg = parserCommande(ligne, clients, plats);
-                    } catch (Exception e) { // Ignorer si invalide
-                        return null;
-                    }
-                    return lg;
-                })
-                .filter(Objects::nonNull)
-                .distinct()
-                .toArray(LigneCommande[]::new);
+            .stream(lignesCommandes)
+            .filter(Objects::nonNull)
+            .map(ligne -> {
+                LigneCommande lg;
+                try {
+                    lg = parserCommande(ligne, clients, plats);
+                } catch (Exception e) { // Ignorer si invalide
+                    return null;
+                }
+                return lg;
+            })
+            .filter(Objects::nonNull)
+            .distinct()
+            .toArray(LigneCommande[]::new);
 
         return new Commande(clients, plats, commandes);
 
@@ -162,10 +165,10 @@ public class Lecteur {
 
     private static String[] lireLignesTantQue(String[] lignes, int infAPartirDe, Pattern regex) {
 
-        int indEcriture = 0;
+        int      indEcriture  = 0;
         String[] lignesRetour = new String[lignes.length];
 
-        int indLecture = infAPartirDe;
+        int    indLecture = infAPartirDe;
         String ligneLue;
 
         while ((ligneLue = lignes[indLecture]) != null && ligneLue.trim().matches(regex.pattern())) {
@@ -180,10 +183,10 @@ public class Lecteur {
 
     private static String[] lireLignesTantQueJusquA(String[] lignes, int infAPartirDe, Pattern regex, String jusquA) {
 
-        int indEcriture = 0;
+        int      indEcriture  = 0;
         String[] lignesRetour = new String[lignes.length];
 
-        int indLecture = infAPartirDe;
+        int    indLecture = infAPartirDe;
         String ligneLue;
 
         while ((ligneLue = lignes[indLecture]) != null && !ligneLue.equals(jusquA)) {

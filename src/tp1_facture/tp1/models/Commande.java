@@ -1,4 +1,4 @@
-package tp1_facture.models;
+package tp1.models;
 
 import java.util.Arrays;
 
@@ -53,9 +53,9 @@ public class Commande {
 
     public double totalClient(Client client) {
         return Arrays.stream(commandes)
-                .filter(commande -> commande.client.nomClient.equals(client.nomClient)) // Seulement prendre les lignes de commandes concernant notre client
-                .mapToDouble(commande -> commande.plat.prix * commande.quantite)        // Transformer ces lignes en coûts par ligne
-                .sum();                                                                 // Faire la somme de ces coûts
+                     .filter(commande -> commande.client.nomClient.equals(client.nomClient)) // Seulement prendre les lignes de commandes concernant notre client
+                     .mapToDouble(commande -> commande.plat.prix * commande.quantite)        // Transformer ces lignes en coûts par ligne
+                     .sum();                                                                 // Faire la somme de ces coûts
     }
 
 }

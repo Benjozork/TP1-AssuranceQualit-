@@ -1,7 +1,5 @@
 package tp1;
 
-import tp1.models.Cv;
-
 /**
  * TP1 Assurance Qualité
  *

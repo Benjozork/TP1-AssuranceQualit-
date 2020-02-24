@@ -16,6 +16,6 @@ task(startPart1, dependsOn: 'classes', type: JavaExec) {
 }
 
 task(startPart2, dependsOn: 'classes', type: JavaExec) {
-    main = 'tp1_facture.Principal'
+    main = 'tp1.Principal'
     classpath = sourceSets.tp1_facture.runtimeClasspath
 }

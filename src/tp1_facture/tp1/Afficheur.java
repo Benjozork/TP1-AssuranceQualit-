@@ -1,6 +1,6 @@
-package tp1_facture;
+package tp1;
 
-import tp1_facture.models.Commande;
+import tp1.models.Commande;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -17,10 +17,10 @@ public class Afficheur {
         sbFacture.append("Bienvenue chez Barette!\n");
 
         Arrays.stream(commande.clients)
-                .forEach(client -> {
-                    double total = commande.totalClient(client);
-                    sbFacture.append(client.nomClient).append(" ").append(total).append("$\n");
-                });
+              .forEach(client -> {
+                  double total = commande.totalClient(client);
+                  sbFacture.append(client.nomClient).append(" ").append(total).append("$\n");
+              });
 
         BufferedWriter writer = new BufferedWriter(new FileWriter(fichier));
 
