@@ -1,21 +1,73 @@
 apply plugin: 'idea'
 apply plugin: 'java'
 
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testCompile 'org.junit.jupiter:junit-jupiter-api:5.1.0'
+    testRuntime 'org.junit.jupiter:junit-jupiter-engine:5.1.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
 sourceSets {
-    tp1 {
-        java { srcDir 'src/tp1' }
+    tp1_1 {
+        java { srcDir 'src/tp1/main' }
     }
-    tp1_facture {
-        java { srcDir 'src/tp1_facture' }
+    tp1_1_test {
+        java { srcDir 'src/tp1/tests' }
+
+        compileClasspath += configurations.testCompile
+        compileClasspath += sourceSets.tp1_1.output
+    }
+    tp1_2 {
+        java { srcDir 'src/tp1_facture/main' }
+    }
+    tp1_2_test {
+        java { srcDir 'src/tp1_facture/tests' }
+
+        compileClasspath += configurations.testCompile
+        compileClasspath += sourceSets.tp1_2.output
+    }
+}
+
+idea {
+    sourceSets.tp1_1_test.allSource.each { s ->
+        module.testSourceDirs += s
+    }
+    sourceSets.tp1_2_test.allSource.each { s ->
+        module.testSourceDirs += s
     }
 }
 
 task(startPart1, dependsOn: 'classes', type: JavaExec) {
     main = 'tp1.Principal'
-    classpath = sourceSets.tp1.runtimeClasspath
+    classpath = sourceSets.tp1_1.runtimeClasspath
 }
 
 task(startPart2, dependsOn: 'classes', type: JavaExec) {
     main = 'tp1.Principal'
-    classpath = sourceSets.tp1_facture.runtimeClasspath
+    classpath = sourceSets.tp1_2.runtimeClasspath
+}
+
+task(testPart1, dependsOn: 'tp1_1_testClasses', type: Test) {
+    useJUnitPlatform()
+
+    testClassesDirs = sourceSets.tp1_1_test.output.classesDirs
+
+    classpath += sourceSets.tp1_1.runtimeClasspath
+    classpath += sourceSets.tp1_1_test.runtimeClasspath
+}
+
+task(testPart2, dependsOn: 'tp1_2_testClasses', type: Test) {
+    useJUnitPlatform()
+
+    testClassesDirs = sourceSets.tp1_2_test.output.classesDirs
+
+    classpath += sourceSets.tp1_2.runtimeClasspath
+    classpath += sourceSets.tp1_2_test.runtimeClasspath
 }
