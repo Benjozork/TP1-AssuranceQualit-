@@ -1,16 +1,32 @@
+--- Specs ---
+
 Spécifications client Ben, pour Éric :
 
-- Commandes incorrectes
+1 - Commandes incorrectes
     - Le nom du client ou le plat n’existe pas (vu précédemment).
     - Des chiffres sont erronés (quantité de plats commandés)
-- Sortie dans fichier facture-du-date-heure.txt et dans le terminal
+2 - Sortie dans fichier facture-du-date-heure.txt et dans le terminal
 
 Spécifications client Éric, pour Louis-Marcel :
 
-- Si un client a une facture de 0$, sa facture n’est pas affichée dans le fichier de sortie
-- Les taxes sont maintenant appliquées (à raison de TPS 5% et TVQ 9,975%)
+3 - Si un client a une facture de 0$, sa facture n’est pas affichée dans le fichier de sortie
+4 - Les taxes sont maintenant appliquées (à raison de TPS 5% et TVQ 9,975%)
 
 Spécifications client Louis-Marcel, pour Ben :
 
-- Commandes incorrectes inscrites dans la sortie terminal
-- Le calcul de la facture doit se faire par client
+5 - Commandes incorrectes inscrites dans la sortie terminal et fichier
+6 - Le calcul de la facture doit se faire par client
+
+-- Test / impl. partie 3 ---
+
+Plan de test et d'implémentation
+-------------------------------- EN ORDRE -
+BENJAMIN     - 5, 6 - tests dans TestSortieCommandes et TestSectionsClients
+ERIC         - 1, 2 - tests dans TestSortieCommandes
+LOUIS-MARCEl - 3, 4 - tests dans TestSortieCommandes, TestSectionsClients et TestSectionTotal
+
+--- Test / impl. anciennes parties ---
+
+Plan de test et d'implémentation
+-------------------------------- EN ORDRE -
+<à faire>
