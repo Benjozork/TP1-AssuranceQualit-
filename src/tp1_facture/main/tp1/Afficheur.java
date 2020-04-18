@@ -11,6 +11,10 @@ import java.util.Arrays;
 @SuppressWarnings("SpellCheckingInspection")
 public class Afficheur {
 
+    public static void afficherFacture(Commande commande) {
+        System.out.println("");
+    }
+
     public static void ecrireFacture(Commande commande, File fichier) throws IOException {
         StringBuilder sbFacture = new StringBuilder();
 
