@@ -1,1 +1,12 @@
-Specifications Eric:
+Spécifications client Éric, pour Louis-Marcel :
+
+- Si un client a une facture de 0$, sa facture n’est pas affichée dans le fichier de sortie
+    = CLARIFICATION
+      - Q: Est-ce que les clients qui n'ont pas de facture doivent être listés dans une section dédiée ?
+      - R: Absolument aucun affichage, pas de mention des clients sans facture
+
+- Les taxes sont maintenant appliquées (à raison de TPS 5% et TVQ 9,975%)
+    = CLARIFICATION
+      - Q: Doit-il avoir une section sous-total pour chaque facture de client et la facture au complet sans les taxes ?
+      - R: Oui. Plats séparés + Sous-total pour plats + Taxes séparées + Total
+	  
