@@ -1,1 +1,15 @@
-Specifications Louis-Marcel:
+Spécifications client Louis-Marcel, pour Ben :
+
+- Commandes incorrectes inscrites dans la sortie terminal et fichier
+    = CLARIFICATION
+      - Q: Quel format doit avoir le message d'erreur pour les commandes incorrectes ?
+      - R: Message d'erreur "Le client / plat <nom du client / plate> n'existe pas."
+    = CLARIFICATION
+      - Q: Doit-il avoir une section erreurs dédiee dans la sortie ou le message remplace t-il la commande à la même place ?
+      - R: Section "Erreurs" dédiée dans la sortie
+
+- Le calcul de la facture doit se faire par client
+    = CLARIFICATION
+      - Q: Quel format doit avoir l'en-tête de la section de chaque client ?
+      - R: Format des sections "=== Total <nom du client> ==="
+	  
