@@ -12,7 +12,16 @@ import java.util.Arrays;
 public class Afficheur {
 
     public static void afficherFacture(Commande commande) {
-        System.out.println("");
+        StringBuilder stringBuilderFacture = new StringBuilder();
+
+        stringBuilderFacture.append("Bienvenue chez Barette!\n");
+
+        Arrays.stream(commande.clients).forEach(client -> {
+            double total = commande.totalClient(client);
+            sbFacture.append(client.nomClient).append(" ").append(total).append("$\n");
+        });
+
+        System.out.println(stringBuilderFacture.toString());
     }
 
     public static void ecrireFacture(Commande commande, File fichier) throws IOException {
@@ -20,11 +29,10 @@ public class Afficheur {
 
         sbFacture.append("Bienvenue chez Barette!\n");
 
-        Arrays.stream(commande.clients)
-              .forEach(client -> {
-                  double total = commande.totalClient(client);
-                  sbFacture.append(client.nomClient).append(" ").append(total).append("$\n");
-              });
+        Arrays.stream(commande.clients).forEach(client -> {
+            double total = commande.totalClient(client);
+            sbFacture.append(client.nomClient).append(" ").append(total).append("$\n");
+        });
 
         BufferedWriter writer = new BufferedWriter(new FileWriter(fichier));
 

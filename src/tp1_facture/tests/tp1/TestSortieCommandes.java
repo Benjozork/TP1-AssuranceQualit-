@@ -43,7 +43,8 @@ public class TestSortieCommandes {
         Afficheur.afficherFacture(commandeAUtiliser);
 
         String contenuSout = baos.toString();
-
+        System.err.println(contenuSout);
+        
         assertTrue(contenuSout.contains("\n\n=== Erreurs ===\n\n"));
         assertTrue(contenuSout.contains("Le client Mr. Inexistant n'existe pas."));
         assertTrue(contenuSout.contains("Le plat Soupe au vide n'existe pas."));
