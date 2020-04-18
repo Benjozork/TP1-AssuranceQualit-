@@ -1,1 +1,14 @@
-specifications Ben:
+Spécifications client Ben, pour Éric :
+
+- Commandes incorrectes
+    - Le nom du client ou le plat n’existe pas (vu précédemment).
+
+    - Des chiffres sont erronés (quantité de plats commandés)
+        = CLARIFICATION
+          - Q: Comment est défini un chiffre erroné ?
+          - R: Chiffre éronné = nombre décimal, négatif, plus grand que 10 ou en lettres
+
+- Sortie dans fichier facture-du-date-heure.txt et dans le terminal
+    = CLARIFICATION
+      - Q: Quel doit être le format de l'heure dans le nom du fichier ?
+      - R: Format d'heure du nom de fichier : facture-hh-mm-ss-dd-mm-yyyy.txt
