@@ -12,4 +12,6 @@ Spécifications client Louis-Marcel, pour Ben :
     = CLARIFICATION
       - Q: Quel format doit avoir l'en-tête de la section de chaque client ?
       - R: Format des sections "=== Total <nom du client> ==="
-	  
+    = CLARIFICATION
+      - Q: Le sous-total ET total par plat doit-il être affiché dans la section client ?
+      - R: Oui, sous le format suivant pour les plats: "<plat> (<quantité>): <montant $>"
