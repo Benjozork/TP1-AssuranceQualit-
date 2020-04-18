@@ -18,7 +18,7 @@ public class Afficheur {
 
         Arrays.stream(commande.clients).forEach(client -> {
             double total = commande.totalClient(client);
-            sbFacture.append(client.nomClient).append(" ").append(total).append("$\n");
+            stringBuilderFacture.append(client.nomClient).append(" ").append(total).append("$\n");
         });
 
         System.out.println(stringBuilderFacture.toString());
