@@ -1,6 +1,6 @@
 Spécifications client Louis-Marcel, pour Ben :
 
-// OK - testé dans TestCommandesAvecErreurs
+// OK - testé dans TestCommandesAvecErreurs - IMPLÉMENTÉ dae404c3
 - Commandes incorrectes inscrites dans la sortie terminal et fichier
     = CLARIFICATION
       - Q: Quel format doit avoir le message d'erreur pour les commandes incorrectes ?
@@ -16,4 +16,4 @@ Spécifications client Louis-Marcel, pour Ben :
       - R: Format des sections "=== Total <nom du client> ==="
     = CLARIFICATION
       - Q: Le sous-total ET total par plat doit-il être affiché dans la section client ?
-      - R: Oui, sous le format suivant pour les plats: "<plat> (<quantité>): <montant $>"
+      - R: Oui, sous le format suivant pour les plats: "<plat> (<quantité>): <montant$>"
