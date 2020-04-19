@@ -1,6 +1,11 @@
 package tp1;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 import tp1.models.Commande;
+
+import java.io.*;
 
 public class TestSortieCommandes {
 
@@ -27,5 +32,24 @@ public class TestSortieCommandes {
     };
 
     Commande commandeSansErreurs = new Commande(clients, plats, lignesCommande);
+
+    @Test public void devrait_afficher_la_meme_chose_dans_terminal_et_fichier() throws IOException {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+        System.setOut(new PrintStream(baos));
+
+        Afficheur.afficherFacture(commandeSansErreurs);
+
+        File fichierOut = new File("fichier_output.tkt");
+
+        Afficheur.ecrireFacture(commandeSansErreurs, fichierOut);
+
+        StringBuilder contenFichier = new StringBuilder();
+        BufferedReader bf = new BufferedReader(new FileReader(fichierOut));
+        String ligne = ""; while ((ligne = bf.readLine()) != null)
+            contenFichier.append(ligne).append("\n");
+
+        Assertions.assertEquals(baos.toString().trim(), contenFichier.toString().trim());
+    }
 
 }
