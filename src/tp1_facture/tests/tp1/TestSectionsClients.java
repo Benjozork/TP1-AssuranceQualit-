@@ -23,11 +23,11 @@ public class TestSectionsClients {
     };
 
     Commande.LigneCommande[] lignesCommande = new Commande.LigneCommande[] {
-            new Commande.LigneCommande(clients[0], plats[0], 1),
-            new Commande.LigneCommande(clients[0], plats[3], 1),
-            new Commande.LigneCommande(clients[1], plats[1], 1),
-            new Commande.LigneCommande(clients[1], plats[2], 3),
-            new Commande.LigneCommande(clients[2], plats[3], 1),
+            new Commande.LigneCommande(clients[0], plats[0], "1"),
+            new Commande.LigneCommande(clients[0], plats[3], "1"),
+            new Commande.LigneCommande(clients[1], plats[1], "1"),
+            new Commande.LigneCommande(clients[1], plats[2], "3"),
+            new Commande.LigneCommande(clients[2], plats[3], "1"),
     };
 
     Commande commandeAUtiliser = new Commande(clients, plats, lignesCommande);

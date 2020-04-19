@@ -24,13 +24,13 @@ public class TestSortieCommandes {
     };
 
     Commande.LigneCommande[] lignesCommande = new Commande.LigneCommande[] {
-            new Commande.LigneCommande(clients[0], plats[0], 1),
-            new Commande.LigneCommande(clients[0], new Commande.Plat("Soupe au vide", 0.00), 1),
+            new Commande.LigneCommande(clients[0], plats[0], "1"),
+            new Commande.LigneCommande(clients[0], new Commande.Plat("Soupe au vide", 0.00), "1"),
             //                                           Erreur ici --^
-            new Commande.LigneCommande(clients[0], plats[3], 1),
-            new Commande.LigneCommande(clients[1], plats[1], 1),
-            new Commande.LigneCommande(clients[1], plats[2], 3),
-            new Commande.LigneCommande(new Commande.Client("Mr. Inexistant"), plats[3], 1),
+            new Commande.LigneCommande(clients[0], plats[3], "1"),
+            new Commande.LigneCommande(clients[1], plats[1], "1"),
+            new Commande.LigneCommande(clients[1], plats[2], "3"),
+            new Commande.LigneCommande(new Commande.Client("Mr. Inexistant"), plats[3], "1"),
             //                                 Erreur ici --^
     };
 

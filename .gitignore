@@ -6,3 +6,4 @@ run.sh
 start.sh
 build.old/
 fichier_test.txt
+/.gradle/
