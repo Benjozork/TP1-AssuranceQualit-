@@ -1,17 +1,68 @@
 package tp1.models;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 public class Commande {
+
+    private static final int MAX_QUANTITE_PLATS = 10;
 
     public Client[] clients;
     public Plat[] plats;
     public LigneCommande[] commandes;
 
+    public Erreur[] erreurs;
+
     public Commande(Client[] clients, Plat[] plats, LigneCommande[] commandes) {
         this.clients = clients;
         this.plats = plats;
         this.commandes = commandes;
+
+        this.erreurs = this.verifierErreurs();
+    }
+
+    public enum TypeErreur {
+        NomClient, NomPlat, ChiffreQuantite
+    }
+    public static class Erreur {
+        public Erreur(TypeErreur type, String objet) {
+            this.type = type;
+            this.objet = objet;
+        }
+
+        public final TypeErreur type;
+        public final String     objet;
+
+        @Override
+        public String toString() {
+            return "Erreur{" +
+                    "type=" + type +
+                    ", objet='" + objet + '\'' +
+                    '}';
+        }
+    }
+
+    private Erreur[] verifierErreurs() {
+        ArrayList<Erreur> erreursRet = new ArrayList<>();
+
+        for (LigneCommande l : commandes) {
+            if (Stream.of(this.clients)
+                    .noneMatch(c -> c.nomClient.equals(l.client.nomClient))) {
+
+                erreursRet.add(new Erreur(TypeErreur.NomClient, l.client.nomClient));
+            }
+            if (Stream.of(this.plats)
+                    .noneMatch(p -> p.nomPlat.equals(l.plat.nomPlat))) {
+
+                erreursRet.add(new Erreur(TypeErreur.NomPlat, l.plat.nomPlat));
+            }
+            if (!l.erreurDansQuantite.equals("")) {
+                erreursRet.add(new Erreur(TypeErreur.ChiffreQuantite, l.erreurDansQuantite));
+            }
+        }
+
+        return erreursRet.toArray(new Erreur[] {});
     }
 
     public static class Client {
@@ -43,10 +94,19 @@ public class Commande {
         public Plat plat;
         public int quantite;
 
-        public LigneCommande(Client client, Plat plat, int quantite) {
+        public String erreurDansQuantite = "";
+
+        public LigneCommande(Client client, Plat plat, String chaineQuantitye) {
             this.client = client;
             this.plat = plat;
-            this.quantite = quantite;
+            try {
+                this.quantite = Integer.parseInt(chaineQuantitye);
+            } catch (Exception e) {
+                this.erreurDansQuantite = "Quantité invalide";
+            }
+            if (this.quantite >= MAX_QUANTITE_PLATS) {
+                this.erreurDansQuantite = "Quantité en haut de 10";
+            }
         }
 
     }
