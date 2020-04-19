@@ -21,7 +21,7 @@ public class Afficheur {
 
         stringBuilderFacture.append("Bienvenue chez Barette!\n");
 
-        Stream.of(commande.clients).forEach(client -> {
+        Stream.of(commande.clients).filter(c -> commande.totalClient(c) != 0.0).forEach(client -> {
             stringBuilderFacture.append("\n=== Total ").append(client.nomClient).append(" ===\n\n");
 
             List<Commande.LigneCommande> lcsClient = Stream.of(commande.commandes)
