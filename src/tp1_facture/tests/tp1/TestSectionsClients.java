@@ -57,7 +57,39 @@ public class TestSectionsClients {
                                                     "Boisson (1): 1.75$\n" +
                                                      "\nSOUS-TOTAL - 1.75$"));
 
-        assertFalse(contenFichier.toString().contains("=== Erreurs ==="));
+       assertFalse(contenFichier.toString().contains("=== Erreurs ==="), "ne doit pas contenir d'erreurs");
+    }
+
+    Commande.LigneCommande[] lignesCommandeIncomplet = new Commande.LigneCommande[] {
+            new Commande.LigneCommande(clients[0], plats[0], "1"),
+            new Commande.LigneCommande(clients[1], plats[2], "3"),
+    };
+
+    Commande commandeIncomplete = new Commande(clients, plats, lignesCommandeIncomplet);
+
+    @Test public void devrait_ne_pas_afficher_une_section_pour_les_clients_avec_un_total_de_zero() throws IOException {
+        File fichierOut = new File("fichier_test.txt");
+
+        Afficheur.ecrireFacture(commandeIncomplete, fichierOut);
+
+        StringBuilder contenFichier = new StringBuilder();
+        BufferedReader bf = new BufferedReader(new FileReader(fichierOut));
+        String ligne = ""; while ((ligne = bf.readLine()) != null)
+            contenFichier.append(ligne).append("\n");
+
+        System.out.println(contenFichier.toString());
+
+        assertTrue(contenFichier.toString().contains("\n\n=== Total Éric ===\n\n" +
+                                                             "Poutine (1): 5.0$\n" +
+                                                             "\nSOUS-TOTAL - 5.0$"));
+        assertTrue(contenFichier.toString().contains("\n\n=== Total Benjamin ===\n\n" +
+                                                             "Hamburger (3): 10.5$\n" +
+                                                             "\nSOUS-TOTAL - 10.5$"));
+
+        assertFalse(contenFichier.toString().contains("\n\n=== Total Louis-Marcel ===\n\n"));
+
+        assertFalse(contenFichier.toString().contains("=== Erreurs ==="), "ne doit pas contenir d'erreurs");
     }
 
 }
+  
