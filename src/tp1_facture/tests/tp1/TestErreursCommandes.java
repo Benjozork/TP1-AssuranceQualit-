@@ -4,6 +4,7 @@ import tp1.models.Commande;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.*;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
@@ -35,21 +36,21 @@ public class TestErreursCommandes {
             //                                 Erreur ici --^
     };
 
-    Commande commandeAUtiliser = new Commande(clients, plats, lignesCommande);
+    private Commande commandeAvecErreurs = new Commande(clients, plats, lignesCommande);
 
     @Test public void devrait_contenir_des_erreurs() {
-        System.out.println(Arrays.toString(commandeAUtiliser.erreurs).replace("},", "}\n"));
+        System.out.println(Arrays.toString(commandeAvecErreurs.erreurs).replace("},", "}\n"));
 
-        assertTrue(Stream.of(commandeAUtiliser.erreurs)
+        assertTrue(Stream.of(commandeAvecErreurs.erreurs)
                            .anyMatch(erreur -> erreur.type == Commande.TypeErreur.NomPlat &&
                                    erreur.objet.equals("Soupe au vide")));
-        assertTrue(Stream.of(commandeAUtiliser.erreurs)
+        assertTrue(Stream.of(commandeAvecErreurs.erreurs)
                            .anyMatch(erreur -> erreur.type == Commande.TypeErreur.NomClient &&
                                    erreur.objet.equals("Mr. Inexistant")));
-        assertTrue(Stream.of(commandeAUtiliser.erreurs)
+        assertTrue(Stream.of(commandeAvecErreurs.erreurs)
                            .anyMatch(erreur -> erreur.type == Commande.TypeErreur.ChiffreQuantite &&
                                    erreur.objet.equals("Quantité invalide")));
-        assertTrue(Stream.of(commandeAUtiliser.erreurs)
+        assertTrue(Stream.of(commandeAvecErreurs.erreurs)
                            .anyMatch(erreur -> erreur.type == Commande.TypeErreur.ChiffreQuantite &&
                                    erreur.objet.equals("Quantité en haut de 10")));
     }
@@ -71,6 +72,25 @@ public class TestErreursCommandes {
         assertTrue(Stream.of(commandeAUtiliser1.erreurs)
                            .anyMatch(erreur -> erreur.type == Commande.TypeErreur.NomPlat &&
                                    erreur.objet.equals("Soupe d'antimatière")));
+    }
+
+    @Test public void devrait_afficher_une_section_erreurs() {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(baos));
+
+        Afficheur.afficherFacture(commandeAvecErreurs);
+
+        String contenuSout = baos.toString();
+        System.err.println(contenuSout);
+
+        assertTrue(contenuSout.contains("\n\n=== Erreurs ===\n\n"));
+        assertTrue(contenuSout.contains("Quantité en haut de 10 du plat."));
+        assertTrue(contenuSout.contains("Le plat Soupe au vide n'existe pas."));
+        assertTrue(contenuSout.contains("Quantité invalide du plat."));
+        assertTrue(contenuSout.contains("Quantité en haut de 10 du plat."));
+        assertTrue(contenuSout.contains("Le client Mr. Inexistant n'existe pas."));
+
+        assertEquals(5 ,commandeAvecErreurs.erreurs.length);
     }
 
 }

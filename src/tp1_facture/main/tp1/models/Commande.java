@@ -34,6 +34,18 @@ public class Commande {
         public final TypeErreur type;
         public final String     objet;
 
+        public String seDecrire() {
+            switch (this.type){
+                case NomClient:
+                    return "Le client " + this.objet + " n'existe pas.";
+                case NomPlat:
+                    return "Le plat " + this.objet + " n'existe pas.";
+                case ChiffreQuantite:
+                    return this.objet + " du plat.";
+            }
+            return "Erreur inconnue";
+        }
+
         @Override
         public String toString() {
             return "Erreur{" +
