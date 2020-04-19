@@ -5,6 +5,7 @@ import tp1.models.Commande;
 
 import java.io.*;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestSectionsClients {
@@ -45,16 +46,18 @@ public class TestSectionsClients {
         System.out.println(contenFichier.toString());
 
         assertTrue(contenFichier.toString().contains("\n\n=== Total Éric ===\n\n" +
-                                                    "Poutine (1): 5.00$\n" +
-                                                    "Boisson (1): 1.75$\n" +
-                                                    "\nTOTAL - 6.75$"));
+                                                     "Boisson (1): 1.75$\n" +
+                                                     "Poutine (1): 5.0$\n" +
+                                                     "\nSOUS-TOTAL - 6.75$"));
         assertTrue(contenFichier.toString().contains("\n\n=== Total Benjamin ===\n\n" +
-                                                     "Frites (1): 2.50$\n" +
-                                                     "Hamburger (1): 10.50$\n" +
-                                                     "\nTOTAL - 13.00$"));
+                                                     "Frites (1): 2.5$\n" +
+                                                     "Hamburger (3): 10.5$\n" +
+                                                     "\nSOUS-TOTAL - 13.0$"));
         assertTrue(contenFichier.toString().contains("\n\n=== Total Louis-Marcel ===\n\n" +
-                                                    "Boisson (1): 1.05$\n" +
-                                                     "\nTOTAL - 1.75$"));
+                                                    "Boisson (1): 1.75$\n" +
+                                                     "\nSOUS-TOTAL - 1.75$"));
+
+        assertFalse(contenFichier.toString().contains("=== Erreurs ==="));
     }
 
 }

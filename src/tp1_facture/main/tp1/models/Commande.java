@@ -108,6 +108,10 @@ public class Commande {
 
         public String erreurDansQuantite = "";
 
+        public double sousTotal() {
+            return this.plat.prix * this.quantite;
+        }
+
         public LigneCommande(Client client, Plat plat, String chaineQuantitye) {
             this.client = client;
             this.plat = plat;
