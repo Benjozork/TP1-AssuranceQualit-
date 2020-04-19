@@ -23,7 +23,7 @@ Plan de test et d'implémentation
 -------------------------------- EN ORDRE -
 [x] ERIC         - 2, 1 - tests dans TestSortieCommandes et TestsErreursCommandes
 [x] BENJAMIN     - 5, 6 - tests dans TestSortieCommandes et TestSectionsClients
-[ ] LOUIS-MARCEl - 3, 4 - tests dans TestSortieCommandes, TestSectionsClients et TestSectionTotal
+[>] LOUIS-MARCEl - 3, 4 - tests dans TestSortieCommandes, TestSectionsClients et TestSectionTotal
 
 --- Test / impl. anciennes parties ---
 

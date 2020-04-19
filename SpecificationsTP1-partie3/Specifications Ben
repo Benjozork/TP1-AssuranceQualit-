@@ -1,5 +1,6 @@
 Spécifications client Ben, pour Éric :
 
+// OK - testé dans TestCommandesAvecErreurs - IMPLÉMENTÉ cf58801e
 - Commandes incorrectes
     - Le nom du client ou le plat n’existe pas (vu précédemment).
 
@@ -8,6 +9,7 @@ Spécifications client Ben, pour Éric :
           - Q: Comment est défini un chiffre erroné ?
           - R: Chiffre éronné = nombre décimal, négatif, plus grand que 10 ou en lettres
 
+// OK - testé dans TestSortieCommandes - IMPLÉMENTÉ 869fd89b
 - Sortie dans fichier facture-du-date-heure.txt et dans le terminal
     = CLARIFICATION
       - Q: Quel doit être le format de l'heure dans le nom du fichier ?

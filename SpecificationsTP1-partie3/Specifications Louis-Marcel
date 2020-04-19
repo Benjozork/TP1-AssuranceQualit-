@@ -9,7 +9,7 @@ Spécifications client Louis-Marcel, pour Ben :
       - Q: Doit-il avoir une section erreurs dédiee dans la sortie ou le message remplace t-il la commande à la même place ?
       - R: Section "=== Erreurs ===" dédiée dans la sortie
 
-// OK - testé dans TestCommandesAvecErreurs
+// OK - testé dans TestSectionsClients - IMPLÉMENTÉ 1267eb33
 - Le calcul de la facture doit se faire par client
     = CLARIFICATION
       - Q: Quel format doit avoir l'en-tête de la section de chaque client ?
