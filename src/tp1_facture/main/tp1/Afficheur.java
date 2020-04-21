@@ -49,8 +49,9 @@ public class Afficheur {
 
         stringBuilderFacture.append("\n=== Grand total ===\n\n");
 
-        Stream.of(commande.clients).forEach(client -> {
+        Stream.of(commande.clients).filter(c -> commande.totalClient(c) != 0.0).forEach(client -> {
             double total = commande.totalClient(client);
+
             stringBuilderFacture.append(client.nomClient).append(": ").append(total).append("$\n");
         });
 
