@@ -29,5 +29,5 @@ Plan de test et d'implémentation
 
 Plan de test
 -------------------------------- EN ORDRE -
-[>] BENJAMIN - tests Afficheur CV (partie 1)
+[x] BENJAMIN - tests Afficheur CV (partie 1)
 <à faire>
