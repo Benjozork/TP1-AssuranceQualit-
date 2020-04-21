@@ -55,7 +55,7 @@ public class TestSectionTotal {
                                                      "---\n" +
                                                      "TPS: 1.07$\n" +
                                                      "TVQ: 2.14$\n" +
-                                                     "TOTAL: 24.71$"));
+                                                     "TOTAL: 24.72$"));
     }
 
 }
