@@ -6,10 +6,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Set;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -42,16 +41,40 @@ public class Afficheur {
             stringBuilderFacture.append("\n");
         });
 
-        Stream.of(commande.clients).forEach(client -> {
-            double total = commande.totalClient(client);
-            stringBuilderFacture.append(client.nomClient).append(" ").append(total).append("$\n");
-        });
-
         if (commande.erreurs.length > 0) stringBuilderFacture.append("\n=== Erreurs ===\n\n");
 
         Stream.of(commande.erreurs).forEach(erreur -> {
             stringBuilderFacture.append(erreur.seDecrire()).append("\n");
         });
+
+        stringBuilderFacture.append("\n=== Grand total ===\n\n");
+
+        Stream.of(commande.clients).forEach(client -> {
+            double total = commande.totalClient(client);
+            stringBuilderFacture.append(client.nomClient).append(": ").append(total).append("$\n");
+        });
+
+        stringBuilderFacture.append("---\n");
+
+        double soustotal = 0.0;
+
+        for(Commande.Client c : commande.clients) {
+            soustotal += commande.totalClient(c);
+        }
+
+        DecimalFormatSymbols dfs = DecimalFormatSymbols.getInstance();
+        dfs.setDecimalSeparator('.');
+        DecimalFormat decimalFormat = new DecimalFormat("#.##", dfs);
+
+        double tps = soustotal * 0.05;
+
+        double tvq = soustotal * 0.09975;
+
+        double total = soustotal + tps + tvq;
+
+        stringBuilderFacture.append("TPS: ").append(decimalFormat.format(tps)).append("$\n");
+        stringBuilderFacture.append("TVQ: ").append(decimalFormat.format(tvq)).append("$\n");
+        stringBuilderFacture.append("TOTAL: ").append(decimalFormat.format(total)).append("$\n");
 
         return stringBuilderFacture.toString();
     }
