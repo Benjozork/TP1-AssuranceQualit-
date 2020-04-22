@@ -80,6 +80,26 @@ public class TestSectionTotal {
                                                              "TPS: 1.07$\n" +
                                                              "TVQ: 2.14$\n" +
                                                              "TOTAL: 24.72$"));
+<<<<<<< HEAD
+    }
+
+    Commande commandeSansCommandes = new Commande(clients, plats, new Commande.LigneCommande[0]);
+
+    @Test public void devrait_ne_pas_afficher_une_section_total_si_aucune_commande() throws IOException {
+        File fichierOut = new File("fichier_test.txt");
+
+        Afficheur.ecrireFacture(commandeSansCommandes, fichierOut);
+
+        StringBuilder contenFichier = new StringBuilder();
+        BufferedReader bf = new BufferedReader(new FileReader(fichierOut));
+        String ligne = ""; while ((ligne = bf.readLine()) != null)
+            contenFichier.append(ligne).append("\n");
+
+        System.out.println(contenFichier.toString());
+
+        assertTrue(contenFichier.toString().contains("\n<aucune commande>"));
+=======
+>>>>>>> e1b8a593642277ca13599e9e4461c354d3638249
     }
 
 }

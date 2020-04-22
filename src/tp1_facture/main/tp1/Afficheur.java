@@ -47,35 +47,47 @@ public class Afficheur {
             stringBuilderFacture.append(erreur.seDecrire()).append("\n");
         });
 
-        stringBuilderFacture.append("\n=== Grand total ===\n\n");
+        if (commande.commandes.length < 1) {
+            stringBuilderFacture.append("\n<aucune commande>");
+        } else {
+            stringBuilderFacture.append("\n=== Grand total ===\n\n");
 
+<<<<<<< HEAD
+            Stream.of(commande.clients).filter(c -> commande.totalClient(c) != 0.0).forEach(client -> {
+                double total = commande.totalClient(client);
+=======
         Stream.of(commande.clients).filter(c -> commande.totalClient(c) != 0.0).forEach(client -> {
             double total = commande.totalClient(client);
 
             stringBuilderFacture.append(client.nomClient).append(": ").append(total).append("$\n");
         });
+>>>>>>> e1b8a593642277ca13599e9e4461c354d3638249
 
-        stringBuilderFacture.append("---\n");
+                stringBuilderFacture.append(client.nomClient).append(": ").append(total).append("$\n");
+            });
 
-        double soustotal = 0.0;
+            stringBuilderFacture.append("---\n");
 
-        for(Commande.Client c : commande.clients) {
-            soustotal += commande.totalClient(c);
+            double soustotal = 0.0;
+
+            for(Commande.Client c : commande.clients) {
+                soustotal += commande.totalClient(c);
+            }
+
+            DecimalFormatSymbols dfs = DecimalFormatSymbols.getInstance();
+            dfs.setDecimalSeparator('.');
+            DecimalFormat decimalFormat = new DecimalFormat("#.##", dfs);
+
+            double tps = soustotal * 0.05;
+
+            double tvq = soustotal * 0.09975;
+
+            double total = soustotal + tps + tvq;
+
+            stringBuilderFacture.append("TPS: ").append(decimalFormat.format(tps)).append("$\n");
+            stringBuilderFacture.append("TVQ: ").append(decimalFormat.format(tvq)).append("$\n");
+            stringBuilderFacture.append("TOTAL: ").append(decimalFormat.format(total)).append("$\n");
         }
-
-        DecimalFormatSymbols dfs = DecimalFormatSymbols.getInstance();
-        dfs.setDecimalSeparator('.');
-        DecimalFormat decimalFormat = new DecimalFormat("#.##", dfs);
-
-        double tps = soustotal * 0.05;
-
-        double tvq = soustotal * 0.09975;
-
-        double total = soustotal + tps + tvq;
-
-        stringBuilderFacture.append("TPS: ").append(decimalFormat.format(tps)).append("$\n");
-        stringBuilderFacture.append("TVQ: ").append(decimalFormat.format(tvq)).append("$\n");
-        stringBuilderFacture.append("TOTAL: ").append(decimalFormat.format(total)).append("$\n");
 
         return stringBuilderFacture.toString();
     }
