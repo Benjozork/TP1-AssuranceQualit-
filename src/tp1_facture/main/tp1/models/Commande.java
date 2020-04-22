@@ -120,7 +120,7 @@ public class Commande {
             } catch (Exception e) {
                 this.erreurDansQuantite = "Quantité invalide";
             }
-            if (this.quantite >= MAX_QUANTITE_PLATS) {
+            if (this.quantite > MAX_QUANTITE_PLATS) {
                 this.erreurDansQuantite = "Quantité en haut de 10";
             }
         }

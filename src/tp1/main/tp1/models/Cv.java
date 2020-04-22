@@ -40,7 +40,7 @@ public class Cv {
 	}
 
 	public static void afficher(Cv cv) {
-		System.out.print("\nNom Membre:\t\t" + cv.nom + "\nPrenom Membre:\t\t" + cv.prenom
+		System.out.print("\nNom Membre:\t\t\t" + cv.nom + "\nPrenom Membre:\t\t" + cv.prenom
 				+ "\nFormation Membre:\t" + cv.formation + "\nExperience Membre:\t"
 				+ cv.experience + "\nCompetences Membre:\t");
 		for (int i = 0; i < cv.competences.length; i++) {

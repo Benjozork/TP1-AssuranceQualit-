@@ -1,7 +1,8 @@
 package tp1;
 
-import org.junit.jupiter.api.Test;
 import tp1.models.Commande;
+
+import org.junit.jupiter.api.Test;
 
 import java.io.*;
 
@@ -92,4 +93,3 @@ public class TestSectionsClients {
     }
 
 }
-  

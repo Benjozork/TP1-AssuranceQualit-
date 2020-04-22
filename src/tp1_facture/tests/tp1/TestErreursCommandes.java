@@ -84,13 +84,12 @@ public class TestErreursCommandes {
         System.err.println(contenuSout);
 
         assertTrue(contenuSout.contains("\n\n=== Erreurs ===\n\n"));
-        assertTrue(contenuSout.contains("Quantité en haut de 10 du plat."));
         assertTrue(contenuSout.contains("Le plat Soupe au vide n'existe pas."));
         assertTrue(contenuSout.contains("Quantité invalide du plat."));
         assertTrue(contenuSout.contains("Quantité en haut de 10 du plat."));
         assertTrue(contenuSout.contains("Le client Mr. Inexistant n'existe pas."));
 
-        assertEquals(5 ,commandeAvecErreurs.erreurs.length);
+        assertEquals(4 ,commandeAvecErreurs.erreurs.length);
     }
 
 }

@@ -52,8 +52,16 @@ public class Afficheur {
         } else {
             stringBuilderFacture.append("\n=== Grand total ===\n\n");
 
+<<<<<<< HEAD
             Stream.of(commande.clients).filter(c -> commande.totalClient(c) != 0.0).forEach(client -> {
                 double total = commande.totalClient(client);
+=======
+        Stream.of(commande.clients).filter(c -> commande.totalClient(c) != 0.0).forEach(client -> {
+            double total = commande.totalClient(client);
+
+            stringBuilderFacture.append(client.nomClient).append(": ").append(total).append("$\n");
+        });
+>>>>>>> e1b8a593642277ca13599e9e4461c354d3638249
 
                 stringBuilderFacture.append(client.nomClient).append(": ").append(total).append("$\n");
             });
