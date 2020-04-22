@@ -1,0 +1,15 @@
+Éxécuter le projet :
+
+unix: ./gradlew startPart1
+win: .\gradlew.bat startPart1 (pour la partie 1)
+OU
+unix: ./gradlew startPart2
+win: .\gradlew.bat startPart2 (pour la partie 2)
+
+Éxécuter les tests
+
+unix: ./gradlew testPart1
+win: .\gradlew.bat testPart1 (pour la partie 1)
+OU
+unix: ./gradlew testPart2
+win: .\gradlew.bat testPart2 (pour la partie 2)
