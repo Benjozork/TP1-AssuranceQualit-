@@ -32,4 +32,23 @@ public class TestLecteurElements {
         assertThrows(IndexOutOfBoundsException.class, () -> Lecteur.parserPlat(source));
     }
 
+    @Test public void devrait_lire_une_ligne_commande_correctement() {
+        Commande.Client c = new Commande.Client("Robert");
+        Commande.Plat p = new Commande.Plat("Poutine", 5.0);
+
+        String ligne = c.nomClient + " " + p.nomPlat + " 5";
+
+        Commande.LigneCommande lc = Lecteur.parserCommande(ligne, new Commande.Client[]{ c }, new Commande.Plat[]{ p });
+
+        assertEquals(c, lc.client);
+        assertEquals(p, lc.plat);
+        assertEquals(5, lc.quantite);
+    }
+
+    @Test public void devrait_ne_pas_lire_une_ligne_commande_erronee() {
+        String ligne = "";
+
+        assertThrows(IndexOutOfBoundsException.class, () -> Lecteur.parserCommande(ligne, new Commande.Client[0], new Commande.Plat[0]));
+    }
+
 }
