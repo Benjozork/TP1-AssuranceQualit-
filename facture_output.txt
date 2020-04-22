@@ -1,0 +1,15 @@
+Bienvenue chez Barette!
+
+=== Total Roger ===
+
+Repas_Poulet (1): 15.75$
+
+SOUS-TOTAL - 15.75$
+
+=== Grand total ===
+
+Roger: 15.75$
+---
+TPS: 0.79$
+TVQ: 1.57$
+TOTAL: 18.11$

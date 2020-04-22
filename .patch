@@ -1,0 +1,41 @@
+Index: src/tp1_facture/main/tp1/Afficheur.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/tp1_facture/main/tp1/Afficheur.java	(revision 617ee2347e71f189c7bdf3909e15a70326997bbd)
++++ src/tp1_facture/main/tp1/Afficheur.java	(revision 5b6c20759a2d840efbf715d40896ca3de23a3d36)
+@@ -12,7 +12,17 @@
+ public class Afficheur {
+ 
+     public static void afficherFacture(Commande commande) {
+-        System.out.println("");
++        StringBuilder sbFacture = new StringBuilder();
++
++        sbFacture.append("Bienvenue chez Barette!\n");
++
++        Arrays.stream(commande.clients)
++                .forEach(client -> {
++                    double total = commande.totalClient(client);
++                    sbFacture.append(client.nomClient).append(" ").append(total).append("$\n");
++                });
++
++        System.out.println(sbFacture.toString());
+     }
+ 
+     public static void ecrireFacture(Commande commande, File fichier) throws IOException {
+Index: src/tp1_facture/tests/tp1/TestSortieCommandes.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/tp1_facture/tests/tp1/TestSortieCommandes.java	(revision 617ee2347e71f189c7bdf3909e15a70326997bbd)
++++ src/tp1_facture/tests/tp1/TestSortieCommandes.java	(revision 5b6c20759a2d840efbf715d40896ca3de23a3d36)
+@@ -43,6 +43,7 @@
+         Afficheur.afficherFacture(commandeAUtiliser);
+ 
+         String contenuSout = baos.toString();
++        System.err.println(contenuSout);
+ 
+         assertTrue(contenuSout.contains("\n\n=== Erreurs ===\n\n"));
+         assertTrue(contenuSout.contains("Le client Mr. Inexistant n'existe pas."));
