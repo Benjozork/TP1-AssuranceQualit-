@@ -57,4 +57,10 @@ public class TestLecteur {
         assertThrows(IllegalArgumentException.class, () -> Lecteur.lireCommande(input));
     }
 
+    @Test public void devrait_ne_paslire_une_commande_sans_plats() {
+        File input = new File("facture_err_1.txt");
+
+        assertThrows(IllegalArgumentException.class, () -> Lecteur.lireCommande(input));
+    }
+
 }
