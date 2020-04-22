@@ -80,7 +80,6 @@ public class TestSectionTotal {
                                                              "TPS: 1.07$\n" +
                                                              "TVQ: 2.14$\n" +
                                                              "TOTAL: 24.72$"));
-<<<<<<< HEAD
     }
 
     Commande commandeSansCommandes = new Commande(clients, plats, new Commande.LigneCommande[0]);
@@ -98,8 +97,7 @@ public class TestSectionTotal {
         System.out.println(contenFichier.toString());
 
         assertTrue(contenFichier.toString().contains("\n<aucune commande>"));
-=======
->>>>>>> e1b8a593642277ca13599e9e4461c354d3638249
+
     }
 
 }
