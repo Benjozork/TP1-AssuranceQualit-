@@ -41,14 +41,20 @@ public class TestLecteur {
 
         File input = new File("facture.txt");
 
-        Commande c = Lecteur.lireCommande(input);
+        Commande commande = Lecteur.lireCommande(input);
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         System.setOut(new PrintStream(baos));
 
-        Afficheur.afficherFacture(c);
+        Afficheur.afficherFacture(commande);
 
         assertEquals(factureCorrecte, baos.toString());
+    }
+
+    @Test public void devrait_ne_paslire_une_commande_sans_clients() {
+        File input = new File("facture_err_0.txt");
+
+        assertThrows(IllegalArgumentException.class, () -> Lecteur.lireCommande(input));
     }
 
 }
