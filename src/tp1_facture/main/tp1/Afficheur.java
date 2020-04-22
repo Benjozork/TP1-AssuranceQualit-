@@ -57,20 +57,16 @@ public class Afficheur {
 
         stringBuilderFacture.append("---\n");
 
-        double soustotal = 0.0;
+        double soustotal = Stream.of(commande.clients)
+                .map(commande::totalClient)
+                .reduce(0d, Double::sum);
 
-        for(Commande.Client c : commande.clients) {
-            soustotal += commande.totalClient(c);
-        }
-
-        DecimalFormatSymbols dfs = DecimalFormatSymbols.getInstance();
-        dfs.setDecimalSeparator('.');
-        DecimalFormat decimalFormat = new DecimalFormat("#.##", dfs);
+        DecimalFormatSymbols dot = DecimalFormatSymbols.getInstance();
+        dot.setDecimalSeparator('.');
+        DecimalFormat decimalFormat = new DecimalFormat("#.##", dot);
 
         double tps = soustotal * 0.05;
-
         double tvq = soustotal * 0.09975;
-
         double total = soustotal + tps + tvq;
 
         stringBuilderFacture.append("TPS: ").append(decimalFormat.format(tps)).append("$\n");
