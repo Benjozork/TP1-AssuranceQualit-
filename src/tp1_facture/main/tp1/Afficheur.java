@@ -16,12 +16,16 @@ import java.util.stream.Stream;
 public class Afficheur {
 
     private static String renderFacture(Commande commande) {
-        StringBuilder stringBuilderFacture = new StringBuilder();
+        StringBuilder affichage = new StringBuilder();
 
-        stringBuilderFacture.append("Bienvenue chez Barette!\n");
+        // Affichage du titre
+
+        affichage.append("Bienvenue chez Barette!\n");
+
+        // Affichage de chaque client
 
         Stream.of(commande.clients).filter(c -> commande.totalClient(c) != 0.0).forEach(client -> {
-            stringBuilderFacture.append("\n=== Total ").append(client.nomClient).append(" ===\n\n");
+            affichage.append("\n=== Total ").append(client.nomClient).append(" ===\n\n");
 
             List<Commande.LigneCommande> lcsClient = Stream.of(commande.commandes)
                     .filter(lc -> lc.client == client)
@@ -29,59 +33,66 @@ public class Afficheur {
                     .collect(Collectors.toList());
 
             for (Commande.LigneCommande lc : lcsClient) {
-                stringBuilderFacture
+                affichage
                         .append(lc.plat.nomPlat)
                         .append(" (").append(lc.quantite).append("): ")
                         .append(lc.sousTotal())
                         .append("$\n");
             }
 
-            stringBuilderFacture.append("\nSOUS-TOTAL - ").append(commande.totalClient(client)).append("$");
+            affichage.append("\nSOUS-TOTAL - ").append(commande.totalClient(client)).append("$");
 
-            stringBuilderFacture.append("\n");
+            affichage.append("\n");
         });
 
-        if (commande.erreurs.length > 0) stringBuilderFacture.append("\n=== Erreurs ===\n\n");
+        // Affichage (ou non) des erreurs
+
+        if (commande.erreurs.length > 0) affichage.append("\n=== Erreurs ===\n\n");
 
         Stream.of(commande.erreurs).forEach(erreur -> {
-            stringBuilderFacture.append(erreur.seDecrire()).append("\n");
+            affichage.append(erreur.seDecrire()).append("\n");
         });
 
+        // Affichage (ou non) du grand total
+
         if (commande.commandes.length < 1) {
-            stringBuilderFacture.append("\n<aucune commande>");
+            affichage.append("\n<aucune commande>");
         } else {
-            stringBuilderFacture.append("\n=== Grand total ===\n\n");
+            affichage.append("\n=== Grand total ===\n\n");
+
+            // Total pour chaque client avec sous-total != 0.00
 
             Stream.of(commande.clients).filter(c -> commande.totalClient(c) != 0.0).forEach(client -> {
                 double total = commande.totalClient(client);
 
-                stringBuilderFacture.append(client.nomClient).append(": ").append(total).append("$\n");
+                affichage.append(client.nomClient).append(": ").append(total).append("$\n");
             });
 
-            stringBuilderFacture.append("---\n");
+            affichage.append("---\n");
 
-            double soustotal = 0.0;
+            // Sous-total
 
-            for(Commande.Client c : commande.clients) {
-                soustotal += commande.totalClient(c);
-            }
+            double soustotal = Stream.of(commande.clients)
+                    .map(commande::totalClient).reduce(0d, Double::sum);
 
-            DecimalFormatSymbols dfs = DecimalFormatSymbols.getInstance();
-            dfs.setDecimalSeparator('.');
-            DecimalFormat decimalFormat = new DecimalFormat("#.##", dfs);
+            // Format des décimales
+
+            DecimalFormatSymbols symbol = DecimalFormatSymbols.getInstance();
+            symbol.setDecimalSeparator('.');
+            DecimalFormat decimalFormat = new DecimalFormat("#.##", symbol);
+
+            // Taxes + grand total
 
             double tps = soustotal * 0.05;
-
             double tvq = soustotal * 0.09975;
-
             double total = soustotal + tps + tvq;
 
-            stringBuilderFacture.append("TPS: ").append(decimalFormat.format(tps)).append("$\n");
-            stringBuilderFacture.append("TVQ: ").append(decimalFormat.format(tvq)).append("$\n");
-            stringBuilderFacture.append("TOTAL: ").append(decimalFormat.format(total)).append("$\n");
+            affichage.append("TPS: ").append(decimalFormat.format(tps)).append("$\n");
+            affichage.append("TVQ: ").append(decimalFormat.format(tvq)).append("$\n");
+            affichage.append("TOTAL: ").append(decimalFormat.format(total)).append("$\n");
         }
 
-        return stringBuilderFacture.toString();
+        return affichage.toString();
     }
 
     public static void afficherFacture(Commande commande) {
