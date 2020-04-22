@@ -21,12 +21,12 @@ public class TestAfficheur {
         Cv.afficher(cv);
         System.err.println(baos.toString());
 
-        assertTrue(baos.toString().contains("\nNom Membre:\t\t\tDupont\n" +
-                                            "Prenom Membre:\t\tBenjamin\n" +
-                                            "Formation Membre:\tCégèp\n" +
-                                            "Experience Membre:\t7\n" +
-                                            "Competences Membre:\taucune\n" +
-                                            "Attentes Membre:\taucune\n"));
+        assertEquals(baos.toString().trim(), "Nom Membre:\t\t\tDupont\n" +
+                                             "Prenom Membre:\t\tBenjamin\n" +
+                                             "Formation Membre:\tCégèp\n" +
+                                             "Experience Membre:\t7\n" +
+                                             "Competences Membre:\taucune\n" +
+                                             "Attentes Membre:\taucune");
     }
 
     @Test public void devrait_afficher_un_cv_avec_plusieurs_competences() {
@@ -39,12 +39,12 @@ public class TestAfficheur {
         Cv.afficher(cv);
         System.err.println(baos.toString());
 
-        assertTrue(baos.toString().contains("\nNom Membre:\t\t\tDupont\n" +
-                                                    "Prenom Membre:\t\tBenjamin\n" +
-                                                    "Formation Membre:\tCégèp\n" +
-                                                    "Experience Membre:\t7\n" +
-                                                    "Competences Membre:\tune, deux, trois\n" +
-                                                    "Attentes Membre:\taucune\n"));
+        assertEquals(baos.toString().trim(), "Nom Membre:\t\t\tDupont\n" +
+                                             "Prenom Membre:\t\tBenjamin\n" +
+                                             "Formation Membre:\tCégèp\n" +
+                                             "Experience Membre:\t7\n" +
+                                             "Competences Membre:\tune, deux, trois\n" +
+                                             "Attentes Membre:\taucune");
     }
 
 }
