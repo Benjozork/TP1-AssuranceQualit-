@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 public class Commande {
 
+    // Quantité maximale de plats
     private static final int MAX_QUANTITE_PLATS = 10;
 
     public Client[] clients;
@@ -22,17 +23,20 @@ public class Commande {
         this.erreurs = this.verifierErreurs();
     }
 
+    // Différents types d'erreurs
     public enum TypeErreur {
         NomClient, NomPlat, ChiffreQuantite
     }
+
     public static class Erreur {
+
         public Erreur(TypeErreur type, String objet) {
             this.type = type;
             this.objet = objet;
         }
 
         public final TypeErreur type;
-        public final String     objet;
+        public final String objet;
 
         public String seDecrire() {
             switch (this.type){
@@ -56,6 +60,7 @@ public class Commande {
     }
 
     private Erreur[] verifierErreurs() {
+        // Verifier les erreur que l'ont possède
         ArrayList<Erreur> erreursRet = new ArrayList<>();
 
         for (LigneCommande l : commandes) {
