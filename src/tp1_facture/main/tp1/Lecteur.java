@@ -125,18 +125,16 @@ public class Lecteur {
 
     }
 
-    private static Commande.Client parserClient(String ligne) {
+    static Commande.Client parserClient(String ligne) {
         return new Commande.Client(ligne);
     }
 
-    private static Commande.Plat parserPlat(String ligne) {
+    static Commande.Plat parserPlat(String ligne) {
         String[] parties = ligne.split(" ");
         return new Commande.Plat(parties[0], Double.parseDouble(parties[1]));
     }
 
-    @SuppressWarnings("OptionalGetWithoutIsPresent")
-    private static LigneCommande parserCommande(String ligne, Commande.Client[] clientsDispo,
-            Commande.Plat[] platsDispo) {
+    static LigneCommande parserCommande(String ligne, Commande.Client[] clientsDispo, Commande.Plat[] platsDispo) {
         String[] parties = ligne.split(" ");
 
         // Trouver un client qui match - si get() échoue on ignore l'erreur dans

@@ -82,4 +82,22 @@ public class TestSectionTotal {
                                                              "TOTAL: 24.72$"));
     }
 
+    Commande commandeSansCommandes = new Commande(clients, plats, new Commande.LigneCommande[0]);
+
+    @Test public void devrait_ne_pas_afficher_une_section_total_si_aucune_commande() throws IOException {
+        File fichierOut = new File("fichier_test.txt");
+
+        Afficheur.ecrireFacture(commandeSansCommandes, fichierOut);
+
+        StringBuilder contenFichier = new StringBuilder();
+        BufferedReader bf = new BufferedReader(new FileReader(fichierOut));
+        String ligne = ""; while ((ligne = bf.readLine()) != null)
+            contenFichier.append(ligne).append("\n");
+
+        System.out.println(contenFichier.toString());
+
+        assertTrue(contenFichier.toString().contains("\n<aucune commande>"));
+
+    }
+
 }
