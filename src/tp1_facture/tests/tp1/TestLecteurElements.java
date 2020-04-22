@@ -45,7 +45,19 @@ public class TestLecteurElements {
         assertEquals(5, lc.quantite);
     }
 
-    @Test public void devrait_ne_pas_lire_une_ligne_commande_erronee() {
+    @Test public void devrait_retourner_null_pour_une_ligne_commande_avec_elements_inconnus() {
+        Commande.Client c = new Commande.Client("Robert");
+        Commande.Plat p = new Commande.Plat("Poutine", 5.0);
+
+        String ligne = c.nomClient + " " + p.nomPlat + " 5";
+
+        Commande.LigneCommande lc = Lecteur.parserCommande(ligne, new Commande.Client[0], new Commande.Plat[0]);
+
+        assertNull(lc.client);
+        assertNull(lc.plat);
+    }
+
+        @Test public void devrait_ne_pas_lire_une_ligne_commande_erronee() {
         String ligne = "";
 
         assertThrows(IndexOutOfBoundsException.class, () -> Lecteur.parserCommande(ligne, new Commande.Client[0], new Commande.Plat[0]));
