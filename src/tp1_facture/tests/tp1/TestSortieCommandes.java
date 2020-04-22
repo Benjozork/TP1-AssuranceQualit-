@@ -33,6 +33,7 @@ public class TestSortieCommandes {
 
     Commande commandeSansErreurs = new Commande(clients, plats, lignesCommande);
 
+    // (pour s'assurer que les deux sorties sont identiques)
     @Test public void devrait_afficher_la_meme_chose_dans_terminal_et_fichier() throws IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 

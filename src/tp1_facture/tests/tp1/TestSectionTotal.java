@@ -72,14 +72,14 @@ public class TestSectionTotal {
         System.out.println(contenFichier.toString());
 
         assertFalse(contenFichier.toString().contains("\n\n=== Grand total ===\n\n" +
-                                                             "Éric: 6.75$\n" +
-                                                             "Benjamin: 13.0$\n" +
-                                                             "Louis-Marcel: 1.75$\n" +
-                                                             "Mr. Nul: 0.0$\n" +
-                                                             "---\n" +
-                                                             "TPS: 1.07$\n" +
-                                                             "TVQ: 2.14$\n" +
-                                                             "TOTAL: 24.72$"));
+                                                      "Éric: 6.75$\n" +
+                                                      "Benjamin: 13.0$\n" +
+                                                      "Louis-Marcel: 1.75$\n" +
+                                                      "Mr. Nul: 0.0$\n" +
+                                                      "---\n" +
+                                                      "TPS: 1.07$\n" +
+                                                      "TVQ: 2.14$\n" +
+                                                      "TOTAL: 24.72$"));
     }
 
     Commande commandeSansCommandes = new Commande(clients, plats, new Commande.LigneCommande[0]);
@@ -97,7 +97,6 @@ public class TestSectionTotal {
         System.out.println(contenFichier.toString());
 
         assertTrue(contenFichier.toString().contains("\n<aucune commande>"));
-
     }
 
 }
